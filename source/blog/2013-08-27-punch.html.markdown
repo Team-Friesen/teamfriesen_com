@@ -1,0 +1,15 @@
+---
+title: punch!
+date: 2013-08-27 17:47:00 UTC
+tags: animation, rigging
+---
+
+Just a bit of animation and rigging yesterday. Chris requested a punching animation, so I got down to working on that. In the process, I added to the rig to make creating a fist a lot easier. First I added a copy rotation constraint to each subsequent finger bone so that I would only need to move the first joint to bend the entire finger. Then I added a 'make fist' bone. I created an action with all the fingers wide open to closed in a fist, then added an action constraint, using the 'make fist' bone's Y-scale as the controller.
+
+![fist controller](/files/fist_controller.png)
+
+Thus, a quick sketch of a jab with fists closed came about. I baked it to a seperate action and applied it to the deformation rig.
+
+![jab rig](/files/punching_rig.png)
+
+I'll be working on cleaning up and elaborating animations the rest of this week, is my guess.
