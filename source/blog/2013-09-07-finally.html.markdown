@@ -1,0 +1,51 @@
+---
+title: FINALLY
+date: 2013-09-07 06:17:00 UTC
+tags: import, export
+---
+
+So where to begin? The saga of import/export hell has finally been cleared and we've been brought into the heavenly light of a workflow that seems to be working.
+
+Static models have been exporting/importing fine. The trouble is the animated models. We've been working with the fairly simple enemy soldier model to find the best way to go about export/import workflow.
+
+Blender's fbx exporter consistently gave us nothing to import. The collada export also gave us nothing to import. Obj's obviously gave us great static models, but no animations. We recently tried a plugin specifically for exporting to Urho... which worked to a point. The mesh was fine, the skeleton was fine, the animations were fine... but the weight painting was totally borked.
+
+Today, I finally did a crazy test. I downloaded the trial version of Maya, and imported the enemy soldier and used the Maya fbx exporter. Imported into Urho with COMPLETE SUCCESS!!! Let me tell you that was a wonderful and troubling moment. It worked. But why!?!
+
+With this information under our belt, we had new search terms to work with. We discovered the [Autodesk FBX Converter](http://usa.autodesk.com/adsk/servlet/pc/item?id=10775855&siteID=123112) which is a free tool that works. Now this seemed to be working for everything except for one annoyance. The mesh would end up having a 90 degree rotation offset from the skeleton. Perhaps we'll find an elegant way to solve this eventually, but having figured out the problem, I just brute forced the fix.
+
+Thus! Official export/import workflow is as follows:
+
+- create model
+- create animation on animation rig
+- bake action so that it works on deformation rig
+- weight paint
+- in the weight paint tools, be sure to click Limit Total and set to 4
+- select mesh in object mode, rotate 90 degrees on x-axis
+- press ctrl-a and apply rotations
+- select mesh, then export as fbx with following options:
+	- check 'selected objects'
+	- scale: 1.00 (default)
+	- Forward: -Z forward
+	- Up: Y up
+	- blue highlighted Armatures and Meshes
+	- check 'apply modifiers'
+	- smoothing: Off
+	- check 'include animation'
+	- check 'include default take' (haven't tried all actions yet)
+	- check 'batch own dir' (default)
+- add the resulting .fbx to the fbx converter and convert using the 2013 version
+- open the urho editor
+- import fbx
+- delete static model
+- create animated model
+- edit animated model to point at new model.xml
+- change animation takes to 1 and point to model_animation_takes.ani
+- test it!
+- add the rest of the required bits to make your animated model usable and save the node
+
+Poo. That seems exhausting! LOL. Way less exhausting than several weeks of unsuccessful trials. Counting my blessings and looking forward to a good night sleep.
+
+Oh right. Picture for proof!
+
+![static and animated models in engine](files/factory_soldier_animation.png)
