@@ -48,4 +48,4 @@ Poo. That seems exhausting! LOL. Way less exhausting than several weeks of unsuc
 
 Oh right. Picture for proof!
 
-![static and animated models in engine](files/factory_soldier_animation.png)
+![static and animated models in engine](/files/factory_soldier_animation.png)
