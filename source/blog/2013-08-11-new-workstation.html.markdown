@@ -1,6 +1,6 @@
 ---
 title:  "new workstation"
-date:   2013-08-11 19:20:00
+date:   2013-08-11 19:20:00 UTC
 tags: general
 ---
 

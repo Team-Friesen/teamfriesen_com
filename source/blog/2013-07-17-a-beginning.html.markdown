@@ -1,6 +1,6 @@
 ---
 title:  "a beginning"
-date:   2013-07-17 01:30:00
+date:   2013-07-17 01:30:00 UTC
 tags: general, misc
 ---
 
